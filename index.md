@@ -1,4 +1,4 @@
-# A place to test new projects.
+# A place to for me to test new projects.
 
 - [Brackets](https://judahcr.github.io/bracket)
 - [Tier List Creator](https://judahcr.github.io/tier)
