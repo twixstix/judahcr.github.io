@@ -1,13 +1,16 @@
 <!doctype html>
 <html>
 <head>
-	<link rel="icon" type="image/x-icon" href= "../icon.png"/>
-	<title>Tier List Creator</title>
+	<link rel="icon" type="image/x-icon" href= "../favicon.ico"/>
+	<title>0px Tier List Creator</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,100italic,700" rel="stylesheet" type="text/css">
 	<link href="newstyle.css" rel="stylesheet">
 	<link href="dragula.min.css" rel="stylesheet">
+	<link rel="author" href="http://0px.moe" />
 	<meta charset="utf-8"/>
 	<meta content='width=device-width, initial-scale=1' name='viewport'/>
+	<meta name="description" content="Create tier lists for your favorite games! Smash, Guilty Gear, Street Fighter, and more!"/>
+	<meta name="keywords" content="tier list creator, tier list, tier list maker, esports, gaming, games, fighting games, hot anime tiddies">
 </head>
 <body>
 	<nav class="controlList">
@@ -139,9 +142,17 @@
 		dragula({
 			isContainer: function (el) {
 				return el.classList.contains('sort');
+			},
+			invalid: function (el){
+				return console.log("invalid target");
 			}
-		}).on("drop", function() {
+		}).on('drag', function(el, source) {
+        		$("body").css("touch-action", "none");
+    		$(document).on('touchstart', function(e) {
+    	});
+    	}).on("drop", function() {
 			localStorage.setItem("TierListMakerCode",toCode());
+			$("body").css("touch-action", "pan-y");
 		});
 		
 		// character images
