@@ -97,6 +97,7 @@
 				<!-- FIGHTING -->
 					<!-- <button id="switchDBFZ">Dragon Ball FighterZ</button> THE IMAGES SUCK FOR THIS SO IT'S DISABLED FOR NOW-->
 					<button id="switchSFV">Street Fighter V</button>
+					<button id="switch3S">Street Fighter III: 3rd Strike</button>
 					<button id="switchGGREV">Guilty Gear Xrd Revelator & REV2</button>
 					<button id="switchBrawlhalla">Brawlhalla</button><br>
 <!-- 					<button id="switchSmash4">Super Smash Bros. 4 (Screenshots)</button> -->
@@ -169,6 +170,7 @@
 		var gameSFV = ["sfv","alex","akuma","balrog","birdie","cammy","chunli","dhalsim","fang","guile","ibuki","karin","ken","kolin","laura","mbison","nash","necalli","rashid","rmika","ryu","vega","zangief","juri","urien"];
 		var gameGGREV = ["ggrev","answer","axl","baiken","bedman","chipp","elphelt","faust","ino","jacko","jam","johnny","kum","ky","leo","may","millia","potemkin","ramlethal","raven","sin","slayer","sol","venom","zato1","dizzy"];
 		var gameSSF2 = ["ssf2","mario","dk","link","kirby","samus","megaman","fox","ness","pikachu","sonic","peach","wario","zelda","sheik","metaknight","zss","bomberman","falcon","blackmage","jigglypuff","tails","yoshi","marth","lloyd","chibirobo","sora","ichigo","naruto","goku"];
+		var game3S = ["3s", "akuma", "alex", "chunli", "dudley", "elena", "gill", "hugo", "ibuki", "ken", "makoto", "necro", "oro", "q", "remy", "ryu", "sean", "twelve", "urien", "yang", "yun"]
 		var gameOW = ["ow","ana","bastion","doomfist","dva","genji","hanzo","junkrat","lucio","mccree","mei","mercy","moira","orisa","pharah","reaper","reinhardt","roadhog","soldier","sombra","symmetra","torbjorn","tracer","widowmaker","winston","zarya","zenyatta"];
 		var gameBrawlhalla = ["bh","ada","asuri","azoth","barraza","bodvar","brynn","cassidy","diana","ember","gnash","hattori","jhala","koji","kor","lordvraxx","lucien","orion","queennai","ragnir","scarlet","sentinel","sirroland","teros","thatch","ulgrim","val","wushang"];
 		
@@ -257,6 +259,7 @@
 				// case "switchSmash4": changeGame(gameSmash4);break;
 				case "switchSSB4Renders": changeGame(gameSSB4Renders);break;
 				case "switchSFV": changeGame(gameSFV);break;
+				case "switch3S": changeGame(game3S);break;
 				case "switchDBFZ": changeGame(gameDBFZ);break;
 				case "switchGGREV": changeGame(gameGGREV);break;
 				case "switchSSF2": changeGame(gameSSF2);break;
@@ -341,6 +344,7 @@
 					case "pm": changeGame(gamePM);break;
 					// case "ssb4": changeGame(gameSmash4);break;
 					case "sfv": changeGame(gameSFV);break;
+					case "3s": changeGame(game3S);break;
 					case "ggrev": changeGame(gameGGREV);break;
 					case "ssf2": changeGame(gameSSF2);break;
 					case "dbfz": changeGame(gameDBFZ);break;
@@ -448,6 +452,7 @@
 				// case "ssb4": changeGame(gameSmash4);break;
 				case "ssb4r": changeGame(gameSSB4Renders);break;
 				case "sfv": changeGame(gameSFV);break;
+				case "3s": changeGame(game3S);break;
 				case "ggrev": changeGame(gameGGREV);break;
 				case "dbfz": changeGame(gameDBFZ);break;
 				case "ssf2": changeGame(gameSSF2);break;
