@@ -195,7 +195,8 @@
 		var currentGameChars = gameMelee;
 		var characters;
 		var resized,tableWidth;
-					  
+		var defaultList = "melee==S|5==A|4==B|3==C|1==F|0";
+
 		for (var i = 0; i < tierDefaults.length; i++) {
 			tierDefaults[i][0].find(".labelHolder").css("background",colors[tierDefaults[i][1]]);
 		}
@@ -393,6 +394,7 @@
 			$("h1 span").text(currentGame);
 			updateTiers();
 		}
+
 		
 		function toCode() { // format game==label|color|char1|char2|...==label|color|char1|char2|...==...
 			var codeColors = [], labels = [], currentChars = [], shareCode = "";
@@ -465,6 +467,10 @@
 			}
 		}
 		
+		function loadDefault() {
+			loadCode("melee==S|5==A|4==B|3==C|1==F|0");
+		}
+
 		function tierlistSize() {
 			if ($("table").width > $("#tablewrap").width)
 				$("#tablewrap").css("display","table-cell");
@@ -492,5 +498,6 @@
 		})
 		
 	</script>
+	<script type="text/javascript">window.onload=loadDefault();</script>
 </body>
 </html>
