@@ -139,9 +139,17 @@
 		dragula({
 			isContainer: function (el) {
 				return el.classList.contains('sort');
+			},
+			invalid: function (el){
+				return console.log("invalid target");
 			}
-		}).on("drop", function() {
+		}).on('drag', function(el, source) {
+        		$("body").css("touch-action", "none");
+    		$(document).on('touchstart', function(e) {
+    	});
+    	}).on("drop", function() {
 			localStorage.setItem("TierListMakerCode",toCode());
+			$("body").css("touch-action", "pan-y");
 		});
 		
 		// character images

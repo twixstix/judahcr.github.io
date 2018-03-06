@@ -11,6 +11,7 @@ body {
 	text-align: center;
 	color: #242424;
 	background-color: #fefefe;
+	touch-action: pan-y;
 }
 
 a, a:visited {
@@ -313,9 +314,25 @@ button:active {
 	table{min-width:0px;}
 }
 */
+@media (max-width: 425px) {
+	#screenshotShow  {
+		display: block;
+    	width: 80%;
+	}
+	#screenshotShow  canvas {
+    	width: 50%;
+	}
+	#gameChange {
+		width: 80%;
+	}
+	#help {
+		display: none;
+	}
+}
+
 @media (max-width: 1176px) {
 	.tier {
-		width: auto;
+		width: auto;}
 }
 
 @media handheld {
