@@ -1,5 +1,5 @@
-<!doctype html>
 <html>
+<!doctype html>
 <head>
 	<title>0px Tier List Creator</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,100italic,700" rel="stylesheet" type="text/css">
@@ -10,7 +10,7 @@
 	<meta charset="utf-8"/>
 	<meta content='width=device-width, initial-scale=1' name='viewport'/>
 	<meta name="description" content="Create tier lists for your favorite games! Smash, Guilty Gear, Street Fighter, and more!"/>
-	<meta name="keywords" content="tier list creator, tier list, tier list maker, esports, gaming, games, fighting games, hot anime tiddies">
+	<meta name="keywords" content="tier list creator, tier list, tier list maker, esports, gaming, games, fighting games, big anime tiddies, so big it's scary, like way too big">
 </head>
 <body>
 	<nav class="controlList">
@@ -77,9 +77,8 @@
 				<p>Tier Color:</p>
 				<div id="colorselect"><span style="background:#FF7F7F"></span><span style="background:#FFBF7F"></span><span style="background:#FFDF7F"></span><span style="background:#FFFF7F"></span><span style="background:#BFFF7F"></span><span style="background:#7FFF7F"></span><span style="background:#7FFFFF"></span><span style="background:#7FBFFF"></span><span style="background:#7F7FFF"></span><span style="background:#FF7FFF"></span><span style="background:#BF7FBF"></span><span style="background:#3B3B3B"></span><span style="background:#858585"></span><span style="background:#F7F7F7"></span></div>
 				<p>Tier Name:</p><textarea id="labelName"></textarea>
-				<p>Options:</p>
-				<p><button id="deleteRow">Delete Current Tier</button> <button id="clearRow">Clear Tier</button></p>
-				<p><button id="addRowUp">Add Tier Above</button><button id="addRowBelow">Add Tier Below</button></p>
+				<!-- <p>Options:</p> -->
+				<p><button id="clearRow">Clear Current Tier</button><button id="saveSettings">Save Changes</button></p>
 			</div>
 			<div id="gameChange">
 				<h1>CHANGE GAME</h1>
@@ -93,12 +92,14 @@
 					<button id="switchPM">Project M</button>
 					<button id="switchSSF2">Super Smash Flash 2</button>
 					<button id="switchBrawlMinus">Brawl Minus</button>
-					<button id="switchBrawlZeus">Brawl Zeus</button><br>
+					<button id="switchBrawlZeus">Brawl Zeus</button>
+					<button id="switchPokken">Pokkén Tournament</button><br>
 				<!-- FIGHTING -->
 					<!-- <button id="switchDBFZ">Dragon Ball FighterZ</button> THE IMAGES SUCK FOR THIS SO IT'S DISABLED FOR NOW-->
 					<button id="switchSFV">Street Fighter V</button>
 					<button id="switch3S">Street Fighter III: 3rd Strike</button>
 					<button id="switchGGREV">Guilty Gear Xrd Revelator & REV2</button>
+					<button id="switchP4AU">Persona 4 Arena Ultimax</button>
 					<button id="switchBrawlhalla">Brawlhalla</button><br>
 <!-- 					<button id="switchSmash4">Super Smash Bros. 4 (Screenshots)</button> -->
 				<!-- OTHER -->
@@ -118,6 +119,8 @@
 						<dd>Hides the control buttons on the right-side of the creator. Good for mobile!</dd>
 						<dt>Reset List</dt>
 						<dd>Clears your entire tier list. Please be sure you want to reset your tier list before clicking.</dd>
+						<dt>Tip: Did you accidentally delete something or reset your tier list?</dt>
+						<dd>Open your web browser's console to see your session's saved tier lists.</dd>
 					</dl>
 				</p>
 				<h1>ABOUT</h1>
@@ -136,7 +139,7 @@
 			</div>
 		</div>
 	</div>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="https://code.pxdn.cloud/jquery/1.11.1/jquery-1.11.1.min.js"></script>
 	<script src="dragula.min.js"></script>
 	<script src="html2canvas.js"></script>
 	<script>
@@ -145,14 +148,14 @@
 				return el.classList.contains('sort');
 			},
 			invalid: function (el){
-				return console.log("invalid target");
+				// return console.log("invalid target");
 			}
 		}).on('drag', function(el, source) {
         		$("body").css("touch-action", "none");
     		$(document).on('touchstart', function(e) {
     	});
     	}).on("drop", function() {
-			localStorage.setItem("TierListMakerCode",toCode());
+			localStorage.setItem("TierListCreatorCode",toCode());
 			$("body").css("touch-action", "pan-y");
 		});
 		
@@ -164,6 +167,8 @@
 		var game64 = ["64","luigi","mario","dk","link","samus","falcon","ness","yoshi","kirby","fox","pikachu","jigglypuff"];
 		var gameBrawl = ["brawl","mario","luigi","peach","bowser","donkeykong","diddykong","yoshi","wario","link","zelda","sheik","ganondorf","toonlink","samus","zerosuitsamus","pit","iceclimbers","rob","kirby","metaknight","kingdedede","olimar","fox","falco","wolf","captainfalcon","pikachu","pokemontrainer","lucario","jigglypuff","marth","ike","ness","lucas","mrgamewatch","snake","sonic"];
 		var gamePM = ["pm","wario","mario","luigi","peach","bowser","yoshi","donkeykong","diddykong","falcon","wolf","fox","falco","icies","zelda","sheik","link","toonlink","ganon","mewtwo","lucario","pikachu","jigglypuff","squirtle","ivysaur","charizard","samus","zerosuit","lucas","ness","pit","kirby","metaknight","dedede","ike","marth","roy","olimar","rob","gnw","snake","sonic"];
+		var gamePokken = ["pokken",  "blaz", "brax", "champ", "chand", "char", "croa", "dark", "deci", "emp", "gar", "garde", "gen", "luca", "mew", "pika", "pikaL", "scep", "sci", "shmew", "sui", "weav"];
+		var gameP4AU = ["P4AU", "ada", "aig", "aki", "chie", "eliz", "junp", "kan", "ken", "lab", "marg", "marie", "mits", "nao", "rise", "sho", "slab", "ssho", "ted", "yosu", "yu", "yuka", "yuki"];
 		var gameBrawlMinus = ["bminus","mario","luigi","peach","bowser","yoshi","donkeykong","diddy","wario","waluigi","link","zelda","sheik","ganondorf","toonlink","samus","zss","ness","lucas","pikachu","jigglypuff","pichu","mewtwo","squirtle","ivysaur","charizard","lucario","kirby","dedede","mk","fox","falco","wolf","marth","roy","ike","captainfalcon","gnw","iceclimbers","rob","pit","olimar","snake","sonic"];
 		var gameBrawlZeus = ["zeus","mario","luigi","peach","koopa","yoshi","dk","dd","wario","link","zelda","sheik","ganon","tlik","samus","zss","ness","lucas","pikachu","pichu","purin","m2","zenigame","fushigisou","lizardon","lucario","kirby","ddd","MK","fox","falco","wolf","marth","roy","ike","lucina","wayu","cf","gw","rob","pit","olimar","snake","sonic","4cloud","blackpit","cloudminus","geno","knuckles","lyn","mac","meta","ridley","ryu","shadow","shulk"];
 		var gameDBFZ = ["dbfz", "ad16", "ad18", "ad21", "bardock", "beerus", "broly", "cell", "frieza", "ginyu", "gohan", "goku", "gokublack", "gotenks", "hit", "kidbuu", "krillin", "majinbuu", "nappa", "piccolo", "ssgoku", "ssvageta", "tgohan", "tien", "trunks", "vageta", "yamcha", ]
@@ -174,10 +179,16 @@
 		var gameOW = ["ow","ana","bastion","doomfist","dva","genji","hanzo","junkrat","lucio","mccree","mei","mercy","moira","orisa","pharah","reaper","reinhardt","roadhog","soldier","sombra","symmetra","torbjorn","tracer","widowmaker","winston","zarya","zenyatta"];
 		var gameBrawlhalla = ["bh","ada","asuri","azoth","barraza","bodvar","brynn","cassidy","diana","ember","gnash","hattori","jhala","koji","kor","lordvraxx","lucien","orion","queennai","ragnir","scarlet","sentinel","sirroland","teros","thatch","ulgrim","val","wushang"];
 		
-		var singleTier = "<tr><td class='labelHolder' contenteditable='true' style='background-color:#FFFF7F'><span class='label'>NEW</span></td><td><div class='tier sort' id='rows'><div class='hiddenkid'></div></div></td><td class='tButtons'><div id='settings'></div><div id='moveButtons'><div id='moveUp'></div><div id='moveDown'></div></div></td></tr>";
-		
-		var screenshotMode = false;
 		var colors = ["#FF7F7F","#FFBF7F","#FFDF7F","#FFFF7F","#BFFF7F","#7FFF7F","#7FFFFF","#7FBFFF","#7F7FFF","#FF7FFF","#BF7FBF","#3B3B3A","#858585", "#F7F7F7"];
+		
+		function generateRandomColor(){
+			randomColor = colors[Math.floor(Math.random() * colors.length)];
+			return randomColor;
+		}
+
+		var singleTier = "<tr><td class='labelHolder' contenteditable='true' style='background-color: " + generateRandomColor() + "'><span class='label'>NEW</span></td><td><div class='tier sort' id='rows'><div class='hiddenkid'></div></div></td><td class='tButtons'><div id='settings'></div></td><td class='tButtons'><div id='moveUp'></div><div id='moveDown'></div></td><td class='tButtons'><div id='addButton'></div><div id='deleteButton'></div></td></div></div></td></tr>";
+
+		var screenshotMode = false;
 		// first is the row in the table of the tier, second is the index of its color
 		var tierDefaults = [ [$("tr:nth-of-type(1)"), 0],
 					  [$("tr:nth-of-type(2)"), 1],
@@ -188,7 +199,7 @@
 					  [$("tr:nth-of-type(7)"), 9] ];
 		var tier = []; // format: [element, color id]
 		var tierlist = [];
-		var currentTier; // i mean come on!
+		var currentTier;
 		var tempTier;
 		var tierIndex;
 		var currentColor;
@@ -204,7 +215,7 @@
 		}
 			
 		$(document).on("load", function(){
-
+			generateRandomColor();
 		});
 
 		$(document).on("click", "#settings", function() { // open settings modal
@@ -213,7 +224,7 @@
 			$("textarea").val(currentTier.find(".labelHolder").text());
 			colorIndex = colors.indexOf(rgb2hex(currentColor).toUpperCase());
 			tier = [currentTier, colorIndex];
-			console.log(tier);
+			// console.log(tier);
 			for (var i = 0; i < $("#modal span").length; i++) {
 				$("#modal span:nth-of-type("+(i+1)+")").attr("class","nope");
 			}
@@ -237,7 +248,7 @@
 			$("#overlay").css("visibility", "visible");
 			$("#helpMenu").css("top",alignPopup($("#helpMenu")));
 		});
-		
+
 		$(document).on("click", "#colorselect span", function() { // change row label
 			for (var i = 0; i < $("#modal span").length; i++) {
 				$("#modal span:nth-of-type("+(i+1)+")").attr("class","nope");
@@ -248,7 +259,7 @@
 		});
 		
 		$(document).on("click", "#gameChange button", function() { // change game
-			console.log("game switching");
+			console.log("Game has been changed!");
 			switch($(this).attr("id")) {
 				case "switch64": changeGame(game64);break;
 				case "switchMelee": changeGame(gameMelee);break;
@@ -257,6 +268,8 @@
 				case "switchBrawlMinus": changeGame(gameBrawlMinus);break;
 				case "switchBrawlZeus": changeGame(gameBrawlZeus);break;
 				// case "switchSmash4": changeGame(gameSmash4);break;
+				case "switchPokken": changeGame(gamePokken);break;
+				case "switchP4AU": changeGame(gameP4AU);break;
 				case "switchSSB4Renders": changeGame(gameSSB4Renders);break;
 				case "switchSFV": changeGame(gameSFV);break;
 				case "switch3S": changeGame(game3S);break;
@@ -268,6 +281,17 @@
 			}
 		});
 			
+		$(document).on("click", function(e){
+			clicked = e.target.id;
+			if (clicked == "tr span"){
+				currentTier = $(e.target).closest("tr");
+				if (currentTier.prev("tr").length != 0) {
+					currentTier.insertBefore(currentTier.prev("tr"));
+				}
+				console.log(currentTier + " is active");
+			}
+		});
+
 		$(document).on("click", function(e) {
 			clicked = e.target.id;
 			if(clicked == "overlay" || clicked == "modalWrapper" || clicked == "close") { // close modals
@@ -277,7 +301,17 @@
 				$("#gameChange").css("display", "none");
 				$("#helpMenu").css("display", "none");
 				$("#screenshotShow").css("display", "none");
+			} else if (clicked == "saveSettings") {
+				localStorage.setItem("TierListCreatorCode",toCode());
+				$("#overlay").css("opacity", 0);
+				$("#overlay").css("visibility", "hidden");
+				$("#modal").css("display", "none");
+				$("#gameChange").css("display", "none");
+				$("#helpMenu").css("display", "none");
+				$("#screenshotShow").css("display", "none");
 			} else if(clicked == "screenshot") { // take a screenshot
+				$(".controlList").css("background-image", "url(img/background.jpg");
+				$(".tButtons").css("display","none");
 				$("#exportcode").val(toCode());
 				$("#modal").css("display", "none");
 				$("#gameChange").css("display", "none");
@@ -286,25 +320,33 @@
 				$("#screenshotShow").css("display","block");
 				$("#overlay").css("opacity", 1);
 				$("#overlay").css("visibility", "visible");
-				$("td:last-of-type").css("display","none");
-				$(".controlList").css("background-image", "url(img/background.jpg");
+				// $("td:last-of-type").css("display","none");
 				html2canvas($("table"), {
 				  onrendered: function(canvas) {
 					$("#screenshotShow span").after(canvas);
 					$("td:last-of-type").css("display","table-cell");
 					$("#screenshotShow").css("top",alignPopup($("#screenshotShow")));
+					$(".tButtons").css("display","table-cell");
 				  }
 				});
 			} else if(clicked == "hidebuttons") { // hide the buttons
 				if (screenshotMode) {
-					$("td:last-of-type").css("display","table-cell");
+					$(".tButtons").css("display","table-cell");
 					$("#hidebuttons").text("Hide Controls");
 					screenshotMode = false;
 				} else {
-					$("td:last-of-type").css("display","none");
+					$(".tButtons").css("display","none");
 					$("#hidebuttons").text("Show Controls");
 					screenshotMode = true;
 				}
+			} else if (clicked == "deleteButton") {
+				currentTier = $(e.target).closest("tr");
+				if (currentTier.next("tr").length != 0 || currentTier.prev("tr").length == 1)
+					currentTier.remove();
+					updateTiers();
+			} else if (clicked == "addButton") {
+				currentTier = $(e.target).closest("tr");
+				$("tr:nth-of-type("+($("tr").index(currentTier)+1)+")").after(singleTier);
 			} else if(clicked == "clearRow") { // put characters in this row back into the box
 				for(var i = 0; i < currentTier.find("#rows div").length; i++) {
 					$("#char div:last-child").after(currentTier.find("#rows div"));
@@ -343,6 +385,8 @@
 					case "zeus": changeGame(gameBrawlZeus);break;
 					case "pm": changeGame(gamePM);break;
 					// case "ssb4": changeGame(gameSmash4);break;
+					case "pokken": changeGame(gamePokken);break;
+					case "P4AU": changeGame(gameP4AU);break;
 					case "sfv": changeGame(gameSFV);break;
 					case "3s": changeGame(game3S);break;
 					case "ggrev": changeGame(gameGGREV);break;
@@ -376,11 +420,11 @@
 				currentColor = currentTier.find(".labelHolder").css("background-color"); // returns in rgb format, have to convert to hex
 				tier[0] = currentTier;
 				tier[1] = colors.indexOf(rgb2hex(currentColor).toUpperCase());
-				console.log(tier);
+				// console.log(tier);
 				tierlist.push(tier);
 			}
 			currentTier = tempTier;
-			console.log(tierlist);
+			// console.log(tierlist);
 		}
 		
 		function changeGame(game) {
@@ -398,7 +442,6 @@
 			$("h1 span").text(currentGame);
 			updateTiers();
 		}
-
 		
 		function toCode() { // format game==label|color|char1|char2|...==label|color|char1|char2|...==...
 			var codeColors = [], labels = [], currentChars = [], shareCode = "";
@@ -425,6 +468,7 @@
 				if (i != labels.length-1)
 					shareCode += "==";
 			}
+
 			console.log(shareCode);
 			return shareCode;
 		}
@@ -451,6 +495,8 @@
 				case "pm": changeGame(gamePM);break;
 				// case "ssb4": changeGame(gameSmash4);break;
 				case "ssb4r": changeGame(gameSSB4Renders);break;
+				case "pokken": changeGame(gamePokken);break;
+				case "P4AU": changeGame(gameP4AU);break;
 				case "sfv": changeGame(gameSFV);break;
 				case "3s": changeGame(game3S);break;
 				case "ggrev": changeGame(gameGGREV);break;
@@ -484,16 +530,17 @@
 		}
 		
 		function alignPopup(popup) {
-			return Math.floor(($(window).height() - popup.height())/2)+"px";
+			return Math.floor(($(window).height() - popup.height())/ 20)+"vh";
+			// return Math.floor(($(window).height() - popup.height())/2)+"px";
 		}
 
 		$(document).ready( function() {
 			$("#char").html("<div></div>");
-			if (localStorage.getItem("TierListMakerCode") === null)
+			if (localStorage.getItem("TierListCreatorCode") === null)
 				changeGame(gameMelee);
 			else {
-				$("#exportcode").val(localStorage.getItem("TierListMakerCode"));
-				loadCode(localStorage.getItem("TierListMakerCode"));
+				$("#exportcode").val(localStorage.getItem("TierListCreatorCode"));
+				loadCode(localStorage.getItem("TierListCreatorCode"));
 			}
 			updateTiers();
 			tierlistSize();
