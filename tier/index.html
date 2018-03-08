@@ -74,11 +74,13 @@
 			<div id="modal">
 				<h1>SETTINGS</h1>
 				<span id="close"></span>
-				<p>Tier Color:</p>
-				<div id="colorselect"><span style="background:#FF7F7F"></span><span style="background:#FFBF7F"></span><span style="background:#FFDF7F"></span><span style="background:#FFFF7F"></span><span style="background:#BFFF7F"></span><span style="background:#7FFF7F"></span><span style="background:#7FFFFF"></span><span style="background:#7FBFFF"></span><span style="background:#7F7FFF"></span><span style="background:#FF7FFF"></span><span style="background:#BF7FBF"></span><span style="background:#3B3B3B"></span><span style="background:#858585"></span><span style="background:#F7F7F7"></span></div>
-				<p>Tier Name:</p><textarea id="labelName"></textarea>
-				<!-- <p>Options:</p> -->
-				<p><button id="clearRow">Clear Current Tier</button><button id="saveSettings">Save Changes</button></p>
+				<div class="colorSelectorGrid">
+					<p>Tier Color &ndash;</p>
+					<div id="colorselect"><span style="background:#FF7F7F"></span><span style="background:#FFBF7F"></span><span style="background:#FFDF7F"></span><span style="background:#FFFF7F"></span><span style="background:#BFFF7F"></span><span style="background:#7FFF7F"></span><span style="background:#7FFFFF"></span><span style="background:#7FBFFF"></span><span style="background:#7F7FFF"></span><span style="background:#FF7FFF"></span><span style="background:#BF7FBF"></span><span style="background:#3B3B3B"></span><span style="background:#858585"></span><span style="background:#F7F7F7"></span></div>
+					<p>Tier Name &ndash;</p><textarea id="labelName"></textarea>
+					<!-- <p>Options:</p> -->
+					<p><button id="clearRow">Clear Current Tier</button><button id="saveSettings">Save Changes</button></p>
+				</div>
 			</div>
 			<div id="gameChange">
 				<h1>CHANGE GAME</h1>
@@ -111,13 +113,13 @@
 				<h1>HELP</h1>
 				<p>
 					<dl>
-						<dt>Share & Import</dt>
+						<dt>Share & Import &ndash;</dt>
 						<dd>The top half creates a shareable image for your tier list. Simply right-click and choose "Save Image As" to save your tier list. The bottom half gives you a shareable code for an editable version of your tier list. If you have a code, paste it into the box and click "Import Tier List".<br>This will overwrite your current tier list with the one you've imported.</dd>
-						<dt>Change Game</dt>
+						<dt>Change Game &ndash;</dt>
 						<dd>Allows you to choose a different game. This will overwrite your current tier list.</dt>
-						<dt>Hide Controls</dt>
+						<dt>Hide Controls &ndash;</dt>
 						<dd>Hides the control buttons on the right-side of the creator. Good for mobile!</dd>
-						<dt>Reset List</dt>
+						<dt>Reset List &ndash;</dt>
 						<dd>Clears your entire tier list. Please be sure you want to reset your tier list before clicking.</dd>
 						<dt>Tip: Did you accidentally delete something or reset your tier list?</dt>
 						<dd>Open your web browser's console to see your session's saved tier lists.</dd>
@@ -141,7 +143,7 @@
 	</div>
 	<script src="https://code.pxdn.cloud/jquery/1.11.1/jquery-1.11.1.min.js"></script>
 	<script src="dragula.min.js"></script>
-	<script src="html2canvas.js"></script>
+	<script src="html2canvas.min.js"></script>
 	<script>
 		dragula({
 			isContainer: function (el) {
@@ -177,8 +179,8 @@
 		var gameSSF2 = ["ssf2","mario","dk","link","kirby","samus","megaman","fox","ness","pikachu","sonic","peach","wario","zelda","sheik","metaknight","zss","bomberman","falcon","blackmage","jigglypuff","tails","yoshi","marth","lloyd","chibirobo","sora","ichigo","naruto","goku"];
 		var game3S = ["3s", "akuma", "alex", "chunli", "dudley", "elena", "gill", "hugo", "ibuki", "ken", "makoto", "necro", "oro", "q", "remy", "ryu", "sean", "twelve", "urien", "yang", "yun"]
 		var gameOW = ["ow","ana","bastion","doomfist","dva","genji","hanzo","junkrat","lucio","mccree","mei","mercy","moira","orisa","pharah","reaper","reinhardt","roadhog","soldier","sombra","symmetra","torbjorn","tracer","widowmaker","winston","zarya","zenyatta"];
-		var gameBrawlhalla = ["bh","ada","asuri","azoth","barraza","bodvar","brynn","cassidy","diana","ember","gnash","hattori","jhala","koji","kor","lordvraxx","lucien","orion","queennai","ragnir","scarlet","sentinel","sirroland","teros","thatch","ulgrim","val","wushang"];
-		
+		var gameBrawlhalla = ["bh","ada","asuri","azoth","barraza","bodvar","brynn","cassidy","diana","ember","gnash","hattori","jhala","koji","kor","lordvraxx","lucien","orion","queennai","ragnir","scarlet","sentinel","sirroland","teros","thatch","ulgrim","val","wushang"];	
+
 		var colors = ["#FF7F7F","#FFBF7F","#FFDF7F","#FFFF7F","#BFFF7F","#7FFF7F","#7FFFFF","#7FBFFF","#7F7FFF","#FF7FFF","#BF7FBF","#3B3B3A","#858585", "#F7F7F7"];
 		
 		function generateRandomColor(){
@@ -321,13 +323,15 @@
 				$("#overlay").css("opacity", 1);
 				$("#overlay").css("visibility", "visible");
 				// $("td:last-of-type").css("display","none");
-				html2canvas($("table"), {
-				  onrendered: function(canvas) {
+				canvas = document.querySelector("canvas");
+				html2canvas(document.querySelector("table"), {canvas: canvas, scale: 1, logging: false})
+				.then(function(canvas){
+					document.body.appendChild(canvas),
+					$("canvas").css("width", "100%");
 					$("#screenshotShow span").after(canvas);
 					$("td:last-of-type").css("display","table-cell");
 					$("#screenshotShow").css("top",alignPopup($("#screenshotShow")));
 					$(".tButtons").css("display","table-cell");
-				  }
 				});
 			} else if(clicked == "hidebuttons") { // hide the buttons
 				if (screenshotMode) {
@@ -517,7 +521,7 @@
 				}
 			}
 		}
-		
+
 		function loadDefault() {
 			loadCode("melee==S|5==A|4==B|3==C|1==F|0");
 		}
